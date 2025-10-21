@@ -3591,6 +3591,13 @@ rc-virtual-list@^3.14.2, rc-virtual-list@^3.5.1, rc-virtual-list@^3.5.2:
     rc-resize-observer "^1.0.0"
     rc-util "^5.36.0"
 
+react-apexcharts@^1.8.0:
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/react-apexcharts/-/react-apexcharts-1.8.0.tgz#d5ad5d0abe095e5534a44405a5f60c698e9d199f"
+  integrity sha512-MuEp56gc0NMO2UUgY94fxQzoBE4XEjmcCha4xYY0vJdRrc1yfFFZE4QrCekOt2wcS3nibghzca/q/CbgkAgN5w==
+  dependencies:
+    prop-types "^15.8.1"
+
 react-dom@^18.2.0:
   version "18.3.1"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.3.1.tgz#c2265d79511b57d479b3dd3fdfa51536494c5cb4"

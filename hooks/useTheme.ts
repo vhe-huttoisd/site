@@ -1,19 +1,10 @@
-import { useTheme as useNextTheme } from 'next-themes';
 import { theme } from 'antd';
 import { useColors } from './useColors';
-import { useEffect, useState } from 'react';
+import { useIsDarkMode } from './useIsDarkMode';
 
 export function useTheme() {
-  const { resolvedTheme } = useNextTheme();
   const colors = useColors();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  // During SSR or before hydration, default to light theme
-  const isDark = mounted ? resolvedTheme === 'dark' : false;
+  const isDark = useIsDarkMode();
 
   return {
     algorithm: isDark ? theme.darkAlgorithm : theme.defaultAlgorithm,
