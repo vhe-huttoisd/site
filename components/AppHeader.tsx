@@ -1,6 +1,5 @@
 'use client';
 
-import { useColors } from '../hooks';
 import { Logo } from './Logo';
 import { ThemeSwitcher } from './ThemeSwitcher';
 
@@ -23,8 +22,6 @@ export function AppHeader() {
 }
 
 function useStyles() {
-  const colors = useColors();
-
   return {
     header: {
       display: 'flex',
@@ -32,8 +29,10 @@ function useStyles() {
       alignItems: 'center',
       width: '100%',
       padding: '1rem',
-      backgroundColor: 'transparent',
-      borderBottom: `1px solid ${colors.border}`,
+      backgroundColor: 'var(--translucent-background)',
+      backdropFilter: 'blur(10px)',
+      borderBottom: '1px solid var(--translucent-border)',
+      boxShadow: '0 2px 8px var(--translucent-shadow)',
     },
     logoContainer: {
       display: 'flex',
@@ -47,8 +46,9 @@ function useStyles() {
       margin: 0,
       fontSize: '24px',
       fontWeight: '300',
-      color: colors.textSecondary,
+      color: 'var(--text)',
       letterSpacing: '0.5px',
+      // textShadow: '0 2px 4px var(--translucent-text-shadow)',
     },
     themeSwitcherContainer: {
       display: 'flex',

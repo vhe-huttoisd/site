@@ -36,6 +36,12 @@ p {
   --text: #000000;
   --text-secondary: #999999;
   --primary: #F27921;
+
+  /* Translucent glass-morphism variables */
+  --translucent-background: rgba(255, 255, 255, 0.1);
+  --translucent-border: rgba(255, 255, 255, 0.2);
+  --translucent-shadow: rgba(0, 0, 0, 0.1);
+  --translucent-text-shadow: rgba(0, 0, 0, 0.3);
 }
 
 .dark {
@@ -46,16 +52,22 @@ p {
   --text: #ffffff;
   --text-secondary: #bfbfbf;
   --primary: #ac5619;
+
+  /* Dark mode translucent glass-morphism variables */
+  --translucent-background: rgba(31, 31, 31, 0.3);
+  --translucent-border: rgba(67, 67, 67, 0.4);
+  --translucent-shadow: rgba(0, 0, 0, 0.3);
+  --translucent-text-shadow: rgba(0, 0, 0, 0.5);
 }
 
 body {
-  background-color: var(--background);
+  background-color: transparent;
   color: var(--foreground);
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Ensure Ant Design components respect CSS variables */
-.ant-card {
+/* .ant-card {
   background-color: var(--surface) !important;
   border-color: var(--border) !important;
 }
@@ -63,10 +75,10 @@ body {
 .ant-card-body {
   background-color: var(--surface) !important;
   color: var(--text) !important;
-}
+} */
 
 /* Dark mode specific overrides */
-.dark .ant-card {
+/* .dark .ant-card {
   background-color: var(--surface) !important;
   border-color: var(--border) !important;
 }
@@ -74,4 +86,27 @@ body {
 .dark .ant-card-body {
   background-color: var(--surface) !important;
   color: var(--text) !important;
+} */
+
+/* Ensure primary buttons use our custom primary color */
+/* .ant-btn-primary {
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+}
+
+.ant-btn-primary:hover {
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+  opacity: 0.8;
+} */
+
+/* Halloween background text styling - now theme-aware */
+.ant-typography h1 {
+  color: var(--text) !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+.ant-typography p {
+  color: var(--text) !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) !important;
 }

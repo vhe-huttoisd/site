@@ -1,8 +1,18 @@
 'use client';
 
-import { Button, Card, Space, Typography, Image, Grid, Row, Col } from 'antd';
+import {
+  Button,
+  Card,
+  Space,
+  Typography,
+  Image,
+  Grid,
+  Row,
+  Col,
+  Divider,
+} from 'antd';
 import { HeartOutlined } from '@ant-design/icons';
-import { useTheme, useColors } from '../hooks';
+import { useColors } from '../hooks';
 import { CandyMonsterGoalTracker } from './CandyMonsterGoalTracker';
 const CANDY_MONSTER_IMAGE_PATH = '/images/candy-monster.png';
 
@@ -41,7 +51,7 @@ export function CandyMonsterPage() {
               type="primary"
               size="large"
               icon={<HeartOutlined />}
-              //   style={styles.donateButton}
+              style={styles.donateButton}
               onClick={() => {
                 // TODO: Implement donation functionality
                 alert('Donate button clicked!');
@@ -55,6 +65,8 @@ export function CandyMonsterPage() {
               </Paragraph>
             </div>
           </div>
+
+          <Divider style={styles.divider} />
 
           {/* Goal Tracker and Monster Image - Responsive Grid */}
           <Row gutter={[16, 16]} align="middle">
@@ -95,6 +107,10 @@ function useStyles() {
   return {
     card: {
       overflow: 'hidden',
+      backgroundColor: 'var(--translucent-background)',
+      backdropFilter: 'blur(10px)',
+      border: '1px solid var(--translucent-border)',
+      boxShadow: '0 8px 32px var(--translucent-shadow)',
     },
     container: {
       padding: '2rem',
@@ -111,15 +127,18 @@ function useStyles() {
     },
     header: {
       textAlign: 'center' as const,
-      marginBottom: '2rem',
+      borderRadius: '12px',
+      padding: '1.5rem',
     },
     mobileHeader: {
       textAlign: 'center' as const,
-      marginBottom: '1rem',
+      borderRadius: '12px',
+      padding: '1rem',
     },
     subtitle: {
       fontSize: '18px',
       marginBottom: 0,
+      color: 'var(--text)',
     },
     imageContainer: {
       textAlign: 'center' as const,
@@ -127,7 +146,6 @@ function useStyles() {
     image: {
       maxWidth: '300px',
       height: 'auto',
-      //   borderRadius: '12px',
     },
     goalTracker: {
       minHeight: '300px',
@@ -159,6 +177,7 @@ function useStyles() {
       height: '50px',
       fontSize: '18px',
       padding: '0 2rem',
+      // Let Ant Design handle the primary color through theme
       backgroundColor: colors.primary,
       borderColor: colors.primary,
     },
@@ -168,6 +187,11 @@ function useStyles() {
     description: {
       //   color: colors.textSecondary,
       fontSize: '14px',
+    },
+    divider: {
+      borderColor: 'var(--translucent-border)',
+      margin: '2rem 0',
+      borderWidth: '2px',
     },
   };
 }

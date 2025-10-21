@@ -2,10 +2,13 @@
 
 import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
-import { useColors, useIsDarkMode } from '../hooks';
+import { Typography } from 'antd';
+import { useColors } from '../hooks';
 
 // Dynamically import Chart to avoid SSR issues
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
+
+const { Title } = Typography;
 
 // Types for our chart data
 interface ChartData {
@@ -40,7 +43,6 @@ export function CandyMonsterGoalTracker({
   const [error, setError] = useState<string | null>(null);
   const [isClient, setIsClient] = useState(false);
   const colors = useColors();
-  const isDarkMode = useIsDarkMode();
   const styles = useStyles(colors);
 
   // Check if we're on the client side
@@ -79,11 +81,16 @@ export function CandyMonsterGoalTracker({
   // Render chart using react-apexcharts
   if (!data) return null;
 
-  const options = getChartOptions(data, colors, isDarkMode);
+  const options = getChartOptions(data, colors);
   const series = [data.pct];
 
   return (
     <div className={className} style={style}>
+      <div style={styles.headerContainer}>
+        <Title level={3} style={styles.headerTitle}>
+          Help us achieve our goal!
+        </Title>
+      </div>
       <Chart
         options={options}
         series={series}
@@ -98,8 +105,7 @@ export function CandyMonsterGoalTracker({
 // Get chart options
 function getChartOptions(
   chartData: ChartData,
-  colors: ReturnType<typeof useColors>,
-  isDarkMode: boolean
+  colors: ReturnType<typeof useColors>
 ) {
   const { goal, achieved, pct } = chartData;
 
@@ -135,7 +141,6 @@ function getChartOptions(
         },
         track: {
           background: colors.border,
-          margin: 8,
         },
         dataLabels: {
           name: {
@@ -180,8 +185,7 @@ async function loadData(
 
     const chartData = await fetchData();
     setData(chartData);
-  } catch (err) {
-    console.error('Error loading data:', err);
+  } catch {
     setError('Failed to load progress chart');
   } finally {
     setLoading(false);
@@ -209,8 +213,7 @@ async function fetchData(): Promise<ChartData> {
   const achieved = Number(vals[achIdx]);
   const pct = Math.max(0, Math.min(100, (achieved / goal) * 100));
 
-  //   return { goal, achieved, pct: Math.round(pct) };
-  return { goal, achieved, pct: 50 };
+  return { goal, achieved, pct: Math.round(pct) };
 }
 
 function useStyles(colors: ReturnType<typeof useColors>) {
@@ -219,19 +222,25 @@ function useStyles(colors: ReturnType<typeof useColors>) {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      minHeight: '300px',
+      //   minHeight: '300px',
       color: colors.textSecondary,
     },
     errorContainer: {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      minHeight: '300px',
+      //   minHeight: '300px',
       color: colors.error,
     },
     chartContainer: {
       width: '100%',
-      height: '300px',
+      //   height: '300px',
+    },
+    headerContainer: {
+      textAlign: 'center' as const,
+    },
+    headerTitle: {
+      color: 'var(--text)',
     },
   };
 }
