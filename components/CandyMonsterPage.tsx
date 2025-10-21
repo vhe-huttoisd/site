@@ -37,7 +37,7 @@ export function CandyMonsterPage() {
         >
           {/* Header */}
           <div style={isMobile ? styles.mobileHeader : styles.header}>
-            <Title level={1}>Feed The Candy Monster!</Title>
+            <Title level={2}>Feed The Candy Monster!</Title>
             <Paragraph style={styles.subtitle}>
               Help feed the hungry monster with candy! Bring a bag or two of
               candy to the school by October 30th. You can also donate money to
@@ -45,30 +45,7 @@ export function CandyMonsterPage() {
             </Paragraph>
           </div>
 
-          {/* Donate CTA Button */}
-          <div style={styles.ctaSection}>
-            <Button
-              type="primary"
-              size="large"
-              icon={<HeartOutlined />}
-              style={styles.donateButton}
-              onClick={() => {
-                // TODO: Implement donation functionality
-                alert('Donate button clicked!');
-              }}
-            >
-              Donate Now
-            </Button>
-            <div style={styles.descriptionContainer}>
-              <Paragraph style={styles.description}>
-                Every donation helps feed the monster and supports our cause!
-              </Paragraph>
-            </div>
-          </div>
-
-          <Divider style={styles.divider} />
-
-          {/* Goal Tracker and Monster Image - Responsive Grid */}
+          {/* Goal Tracker and Donate Button - Responsive Grid */}
           <Row gutter={[16, 16]} align="middle">
             {/* Goal Tracker - Full width on mobile, half on desktop */}
             <Col xs={24} md={12} order={isMobile ? 1 : 0}>
@@ -79,22 +56,46 @@ export function CandyMonsterPage() {
               </div>
             </Col>
 
-            {/* Candy Monster Image - Full width on mobile, half on desktop */}
+            {/* Donate CTA Button - Full width on mobile, half on desktop */}
             <Col xs={24} md={12} order={isMobile ? 2 : 0}>
-              <div
-                style={
-                  isMobile ? styles.mobileImageContainer : styles.imageContainer
-                }
-              >
-                <Image
-                  src={CANDY_MONSTER_IMAGE_PATH}
-                  alt="Candy Monster"
-                  style={isMobile ? styles.mobileImage : styles.image}
-                  preview={false}
-                />
+              <div style={styles.ctaSection}>
+                <Button
+                  type="primary"
+                  size="large"
+                  icon={<HeartOutlined />}
+                  style={styles.donateButton}
+                  onClick={() => {
+                    // TODO: Implement donation functionality
+                    alert('Donate button clicked!');
+                  }}
+                >
+                  Donate Now
+                </Button>
+                <div style={styles.descriptionContainer}>
+                  <Paragraph style={styles.description}>
+                    Every donation helps feed the monster and supports our
+                    cause!
+                  </Paragraph>
+                </div>
               </div>
             </Col>
           </Row>
+
+          <Divider style={styles.divider} />
+
+          {/* Candy Monster Image */}
+          <div
+            style={
+              isMobile ? styles.mobileImageContainer : styles.imageContainer
+            }
+          >
+            <Image
+              src={CANDY_MONSTER_IMAGE_PATH}
+              alt="Candy Monster"
+              style={isMobile ? styles.mobileImage : styles.image}
+              preview={false}
+            />
+          </div>
         </Space>
       </Card>
     </div>
@@ -133,10 +134,8 @@ function useStyles() {
     mobileHeader: {
       textAlign: 'center' as const,
       borderRadius: '12px',
-      padding: '1rem',
     },
     subtitle: {
-      fontSize: '18px',
       marginBottom: 0,
       color: 'var(--text)',
     },
@@ -190,7 +189,6 @@ function useStyles() {
     },
     divider: {
       borderColor: 'var(--translucent-border)',
-      margin: '2rem 0',
       borderWidth: '2px',
     },
   };
