@@ -37,16 +37,16 @@ export function CandyMonsterPage() {
         >
           {/* Header */}
           <div style={isMobile ? styles.mobileHeader : styles.header}>
-            <Title level={2}>Feed The Candy Monster!</Title>
+            <Title level={2}>🍭 Feed the Candy Monster!</Title>
             <Paragraph style={styles.subtitle}>
-              Help feed the hungry monster with candy! Bring a bag or two of
-              candy to the school by October 30th. You can also donate money to
-              the candy monster fund.
+              The Candy Monster is hungry — and we need your help to make sure
+              there’s enough candy for everyone!
+              <br /> Bring a bag (or two!) of candy to school or donate below.
             </Paragraph>
           </div>
 
           {/* Goal Tracker and Donate Button - Responsive Grid */}
-          <Row gutter={[16, 16]} align="middle">
+          <Row align="middle">
             {/* Goal Tracker - Full width on mobile, half on desktop */}
             <Col xs={24} md={12} order={isMobile ? 1 : 0}>
               <div
@@ -71,12 +71,6 @@ export function CandyMonsterPage() {
                 >
                   Donate Now
                 </Button>
-                <div style={styles.descriptionContainer}>
-                  <Paragraph style={styles.description}>
-                    Every donation helps feed the monster and supports our
-                    cause!
-                  </Paragraph>
-                </div>
               </div>
             </Col>
           </Row>
@@ -162,7 +156,7 @@ function useStyles() {
       height: 'auto',
     },
     mobileGoalTracker: {
-      minHeight: '200px',
+      //   minHeight: '200px',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',

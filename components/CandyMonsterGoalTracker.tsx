@@ -31,6 +31,17 @@ const COPY = {
     `${achieved} / ${goal}`,
 };
 
+// Goal deadline - October 30th
+const GOAL_DEADLINE = new Date('2025-10-30');
+
+// Calculate days remaining until goal deadline
+function getDaysRemaining(): number {
+  const today = new Date();
+  const timeDiff = GOAL_DEADLINE.getTime() - today.getTime();
+  const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+  return Math.max(0, daysDiff);
+}
+
 const GOOGLE_SHEETS_URL =
   'https://docs.google.com/spreadsheets/d/e/2PACX-1vR70fpSVLEzzbGatiRFIzy6hrXfx3IaEqzmm5rl5NNK_lYG0O7YFxy2KPXZ3VANg15Gy4AduBxWVOwj/pub?output=csv';
 
@@ -87,8 +98,8 @@ export function CandyMonsterGoalTracker({
   return (
     <div className={className} style={style}>
       <div style={styles.headerContainer}>
-        <Title level={3} style={styles.headerTitle}>
-          Help us achieve our goal!
+        <Title level={4} style={styles.headerTitle}>
+          Only {getDaysRemaining()} days left to reach our goal!
         </Title>
       </div>
       <Chart
@@ -222,19 +233,16 @@ function useStyles(colors: ReturnType<typeof useColors>) {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      //   minHeight: '300px',
       color: colors.textSecondary,
     },
     errorContainer: {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      //   minHeight: '300px',
       color: colors.error,
     },
     chartContainer: {
       width: '100%',
-      //   height: '300px',
     },
     headerContainer: {
       textAlign: 'center' as const,
