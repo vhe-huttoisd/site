@@ -1,29 +1,31 @@
 'use client';
 
-import { ThemeProvider as NextThemeProvider } from 'next-themes';
+import { ThemeProvider as NextThemesProvider } from 'next-themes';
 import { ConfigProvider } from 'antd';
-import { useTheme } from '@/hooks/useTheme';
 import { ReactNode } from 'react';
+import { useTheme } from '../hooks/useTheme';
 
 interface ThemeProviderProps {
   children: ReactNode;
 }
 
-const AntdThemeWrapper = ({ children }: { children: ReactNode }) => {
-  const { antdTheme } = useTheme();
+function AntdConfigProvider({ children }: { children: ReactNode }) {
+  const theme = useTheme();
 
-  return <ConfigProvider theme={antdTheme}>{children}</ConfigProvider>;
-};
+  return <ConfigProvider theme={theme}>{children}</ConfigProvider>;
+}
 
-export const ThemeProvider = ({ children }: ThemeProviderProps) => {
+export function ThemeProvider({ children }: ThemeProviderProps) {
   return (
-    <NextThemeProvider
+    <NextThemesProvider
       attribute="class"
-      defaultTheme="system"
+      defaultTheme="dark"
       enableSystem
-      disableTransitionOnChange
+      disableTransitionOnChange={false}
+      storageKey="theme"
+      forcedTheme={undefined}
     >
-      <AntdThemeWrapper>{children}</AntdThemeWrapper>
-    </NextThemeProvider>
+      <AntdConfigProvider>{children}</AntdConfigProvider>
+    </NextThemesProvider>
   );
-};
+}

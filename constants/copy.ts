@@ -1,32 +1,9 @@
 export const COPY = {
-  // Site metadata
-  SITE: {
-    TITLE: 'VHE Site',
-    DESCRIPTION: 'A super tiny site with serverless components',
-  },
-
-  // Header
-  HEADER: {
-    TITLE: '🚀 VHE Site',
-    SUBTITLE: 'A super tiny site with serverless components',
-  },
-
-  // Footer
-  FOOTER: {
-    TEXT: 'Built with Next.js, TypeScript, Ant Design, and ❤️',
-  },
-
-  // Theme Switcher
-  THEME: {
-    LIGHT: 'Light',
-    DARK: 'Dark',
-    THEME_BUTTON: 'Theme',
-    PAGE_THEMES: {
-      DEFAULT: 'Default',
-      BLUE: 'Blue',
-      GREEN: 'Green',
-      PURPLE: 'Purple',
-      ORANGE: 'Orange',
+  SITE_TITLE_SUFFIX: ' - VHE PTA',
+  PAGES: {
+    CANDY_MONSTER: {
+      TITLE: 'Feed  The Candy Monster',
+      DESCRIPTION: 'Help feed the hungry candy monster with sweet treats!',
     },
   },
-} as const;
+};

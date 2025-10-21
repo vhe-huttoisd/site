@@ -1,37 +1,77 @@
-/* Global styles - minimal CSS, rely on Ant Design theme system */
-* {
-  margin: 0;
+html,
+body {
   padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+* {
   box-sizing: border-box;
 }
 
-html {
-  height: 100%;
+main {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Component styles are now handled by useStyles hooks */
+
+h1 {
+  color: #333;
+}
+
+p {
+  color: #666;
+  line-height: 1.6;
+}
+
+/* Dark mode support */
+:root {
+  --background: #ffffff;
+  --foreground: #000000;
+  --surface: #ffffff;
+  --border: #d9d9d9;
+  --text: #000000;
+  --text-secondary: #999999;
+  --primary: #F27921;
+}
+
+.dark {
+  --background: #141414;
+  --foreground: #ffffff;
+  --surface: #1f1f1f;
+  --border: #434343;
+  --text: #ffffff;
+  --text-secondary: #bfbfbf;
+  --primary: #ac5619;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, sans-serif;
-  line-height: 1.6;
-  min-height: 100vh;
-  margin: 0;
+  background-color: var(--background);
+  color: var(--foreground);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Custom scrollbar - theme-aware */
-::-webkit-scrollbar {
-  width: 8px;
+/* Ensure Ant Design components respect CSS variables */
+.ant-card {
+  background-color: var(--surface) !important;
+  border-color: var(--border) !important;
 }
 
-::-webkit-scrollbar-track {
-  background: var(--ant-color-bg-container);
-  border-radius: 4px;
+.ant-card-body {
+  background-color: var(--surface) !important;
+  color: var(--text) !important;
 }
 
-::-webkit-scrollbar-thumb {
-  background: var(--ant-color-border);
-  border-radius: 4px;
+/* Dark mode specific overrides */
+.dark .ant-card {
+  background-color: var(--surface) !important;
+  border-color: var(--border) !important;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--ant-color-text-tertiary);
+.dark .ant-card-body {
+  background-color: var(--surface) !important;
+  color: var(--text) !important;
 }
