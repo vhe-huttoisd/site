@@ -1,7 +1,12 @@
 import Head from 'next/head';
 import { CandyMonsterPage } from '@/components/CandyMonsterPage';
 import { AppHeader } from '@/components/AppHeader';
-import { COPY, BACKGROUND_IMAGE_URL } from '@/constants/copy';
+import {
+  COPY,
+  BACKGROUND_IMAGE_URL,
+  BACKGROUND_OG_IMAGE_URL,
+} from '@/constants/copy';
+
 export default function Home() {
   const styles = useStyles();
 
@@ -16,6 +21,14 @@ export default function Home() {
           content={COPY.PAGES.CANDY_MONSTER.DESCRIPTION}
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="og:image" content={BACKGROUND_OG_IMAGE_URL} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:title" content={COPY.PAGES.CANDY_MONSTER.OG_TITLE} />
+        <meta
+          property="og:description"
+          content={COPY.PAGES.CANDY_MONSTER.OG_DESCRIPTION}
+        />
       </Head>
 
       <AppHeader />
