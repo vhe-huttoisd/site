@@ -12,15 +12,28 @@ import { COPY } from '@/constants/copy';
 const { Text } = Typography;
 
 export const ThemeSwitcher = () => {
-  const { theme, toggleTheme, pageTheme, updatePageTheme, isDark, colors } = useTheme();
+  const { theme, toggleTheme, pageTheme, updatePageTheme, isDark, colors } =
+    useTheme();
   const styles = useStyles(colors);
 
   const pageThemeOptions = [
-    { key: 'default', label: COPY.THEME.PAGE_THEMES.DEFAULT, color: colors.primary },
+    {
+      key: 'default',
+      label: COPY.THEME.PAGE_THEMES.DEFAULT,
+      color: colors.primary,
+    },
     { key: 'blue', label: COPY.THEME.PAGE_THEMES.BLUE, color: '#1890ff' },
-    { key: 'green', label: COPY.THEME.PAGE_THEMES.GREEN, color: colors.success },
+    {
+      key: 'green',
+      label: COPY.THEME.PAGE_THEMES.GREEN,
+      color: colors.success,
+    },
     { key: 'purple', label: COPY.THEME.PAGE_THEMES.PURPLE, color: '#722ed1' },
-    { key: 'orange', label: COPY.THEME.PAGE_THEMES.ORANGE, color: colors.warning },
+    {
+      key: 'orange',
+      label: COPY.THEME.PAGE_THEMES.ORANGE,
+      color: colors.warning,
+    },
   ];
 
   const themeMenuItems = [

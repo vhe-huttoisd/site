@@ -9,6 +9,20 @@ export interface CustomThemeConfig extends ThemeConfig {
   pageTheme?: PageTheme;
 }
 
+// Helper function to adjust color brightness
+const adjustColor = (color: string, amount: number): string => {
+  const hex = color.replace('#', '');
+  const r = parseInt(hex.substr(0, 2), 16);
+  const g = parseInt(hex.substr(2, 2), 16);
+  const b = parseInt(hex.substr(4, 2), 16);
+  
+  const newR = Math.max(0, Math.min(255, r + amount));
+  const newG = Math.max(0, Math.min(255, g + amount));
+  const newB = Math.max(0, Math.min(255, b + amount));
+  
+  return `#${newR.toString(16).padStart(2, '0')}${newG.toString(16).padStart(2, '0')}${newB.toString(16).padStart(2, '0')}`;
+};
+
 export function useTheme() {
   const { theme, setTheme, resolvedTheme } = useNextTheme();
   const [pageTheme, setPageTheme] = useState<PageTheme>('default');
@@ -186,18 +200,4 @@ const getPrimaryColor = (pageTheme: PageTheme): string => {
     orange: '#fa8c16',
   };
   return colors[pageTheme];
-};
-
-// Helper function to adjust color brightness
-const adjustColor = (color: string, amount: number): string => {
-  const hex = color.replace('#', '');
-  const r = parseInt(hex.substr(0, 2), 16);
-  const g = parseInt(hex.substr(2, 2), 16);
-  const b = parseInt(hex.substr(4, 2), 16);
-  
-  const newR = Math.max(0, Math.min(255, r + amount));
-  const newG = Math.max(0, Math.min(255, g + amount));
-  const newB = Math.max(0, Math.min(255, b + amount));
-  
-  return `#${newR.toString(16).padStart(2, '0')}${newG.toString(16).padStart(2, '0')}${newB.toString(16).padStart(2, '0')}`;
 };

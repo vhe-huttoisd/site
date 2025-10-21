@@ -73,7 +73,7 @@ function useStyles(colors: any) {
       borderRadius: 12,
       padding: 48,
       boxShadow: `0 10px 30px ${colors.isDark ? 'rgba(0, 0, 0, 0.3)' : 'rgba(0, 0, 0, 0.1)'}`,
-      textAlign: 'center',
+      textAlign: 'center' as const,
     },
     title: {
       fontSize: '3rem',
@@ -89,7 +89,7 @@ function useStyles(colors: any) {
       marginBottom: '2rem',
     },
     footer: {
-      textAlign: 'center',
+      textAlign: 'center' as const,
       background: `linear-gradient(135deg, ${colors.gradientStart} 0%, ${colors.gradientEnd} 100%)`,
       color: colors.text,
     },

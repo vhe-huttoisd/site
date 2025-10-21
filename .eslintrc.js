@@ -20,15 +20,15 @@ module.exports = {
     'prettier',
   ],
   parser: '@typescript-eslint/parser',
-  parserOptions: {
-    ecmaVersion: 2022,
-    sourceType: 'module',
-    ecmaFeatures: {
-      jsx: true,
+    parserOptions: {
+      ecmaVersion: 2022,
+      sourceType: 'module',
+      ecmaFeatures: {
+        jsx: true,
+      },
+      project: './tsconfig.json',
+      tsconfigRootDir: __dirname,
     },
-    project: './tsconfig.json',
-    tsconfigRootDir: __dirname,
-  },
   settings: {
     react: {
       version: 'detect',
@@ -137,6 +137,11 @@ module.exports = {
         enforceForRenamedProperties: false,
       },
     ],
+
+    // Function declaration rules
+    'func-style': ['error', 'declaration', { allowArrowFunctions: 'never' }],
+    'prefer-function-type': 'error',
+    'no-var-requires': 'error',
   },
   env: {
     node: true,
