@@ -1,42 +1,22 @@
 'use client';
 
-import {
-  Button,
-  Card,
-  Space,
-  Typography,
-  Image,
-  Grid,
-  Row,
-  Col,
-  Divider,
-} from 'antd';
+import { Button, Card, Space, Typography, Image } from 'antd';
 import { HeartOutlined } from '@ant-design/icons';
 import { useColors } from '../hooks';
 import { CandyMonsterGoalTracker } from './CandyMonsterGoalTracker';
 const CANDY_MONSTER_IMAGE_PATH = '/images/candy-monster.png';
 
 const { Title, Paragraph } = Typography;
-const { useBreakpoint } = Grid;
 
 export function CandyMonsterPage() {
   const styles = useStyles();
-  const screens = useBreakpoint();
-  const isMobile = !screens.md; // md breakpoint is 768px
 
   return (
-    <div
-      style={isMobile ? styles.mobileContainer : styles.container}
-      suppressHydrationWarning
-    >
+    <div style={styles.container} suppressHydrationWarning>
       <Card style={styles.card}>
-        <Space
-          direction="vertical"
-          size={isMobile ? 'small' : 'large'}
-          style={styles.spaceContainer}
-        >
+        <Space direction="vertical" size="small" style={styles.spaceContainer}>
           {/* Header */}
-          <div style={isMobile ? styles.mobileHeader : styles.header}>
+          <div style={styles.header}>
             <Title level={2}>🍭 Feed the Candy Monster!</Title>
             <Paragraph style={styles.subtitle}>
               The Candy Monster is hungry — and we need your help to make sure
@@ -46,47 +26,35 @@ export function CandyMonsterPage() {
           </div>
 
           {/* Goal Tracker and Donate Button - Responsive Grid */}
-          <Row align="middle">
-            {/* Goal Tracker - Full width on mobile, half on desktop */}
-            <Col xs={24} md={12} order={isMobile ? 1 : 0}>
-              <div
-                style={isMobile ? styles.mobileGoalTracker : styles.goalTracker}
+          {/* Goal Tracker - Full width on mobile, half on desktop */}
+          <div style={styles.goalTracker}>
+            <CandyMonsterGoalTracker />
+          </div>
+
+          {/* Donate CTA Button - Full width on mobile, half on desktop */}
+          <div>
+            <div style={styles.ctaSection}>
+              <Button
+                type="primary"
+                size="large"
+                icon={<HeartOutlined />}
+                style={styles.donateButton}
+                onClick={() => {
+                  // TODO: Implement donation functionality
+                  alert('Donate button clicked!');
+                }}
               >
-                <CandyMonsterGoalTracker />
-              </div>
-            </Col>
-
-            {/* Donate CTA Button - Full width on mobile, half on desktop */}
-            <Col xs={24} md={12} order={isMobile ? 2 : 0}>
-              <div style={styles.ctaSection}>
-                <Button
-                  type="primary"
-                  size="large"
-                  icon={<HeartOutlined />}
-                  style={styles.donateButton}
-                  onClick={() => {
-                    // TODO: Implement donation functionality
-                    alert('Donate button clicked!');
-                  }}
-                >
-                  Donate Now
-                </Button>
-              </div>
-            </Col>
-          </Row>
-
-          <Divider style={styles.divider} />
+                Donate Now
+              </Button>
+            </div>
+          </div>
 
           {/* Candy Monster Image */}
-          <div
-            style={
-              isMobile ? styles.mobileImageContainer : styles.imageContainer
-            }
-          >
+          <div style={styles.imageContainer}>
             <Image
               src={CANDY_MONSTER_IMAGE_PATH}
               alt="Candy Monster"
-              style={isMobile ? styles.mobileImage : styles.image}
+              style={styles.image}
               preview={false}
             />
           </div>
@@ -109,12 +77,7 @@ function useStyles() {
     },
     container: {
       padding: '2rem',
-      maxWidth: '800px',
-      margin: '0 auto',
-    },
-    mobileContainer: {
-      padding: '0.5rem',
-      maxWidth: '800px',
+      maxWidth: '600px',
       margin: '0 auto',
     },
     spaceContainer: {
@@ -122,16 +85,12 @@ function useStyles() {
     },
     header: {
       textAlign: 'center' as const,
-      borderRadius: '12px',
       padding: '1.5rem',
-    },
-    mobileHeader: {
-      textAlign: 'center' as const,
-      borderRadius: '12px',
     },
     subtitle: {
       marginBottom: 0,
       color: 'var(--text)',
+      fontSize: '18px',
     },
     imageContainer: {
       textAlign: 'center' as const,
@@ -141,30 +100,13 @@ function useStyles() {
       height: 'auto',
     },
     goalTracker: {
-      minHeight: '300px',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      padding: '1rem',
-    },
-    mobileImageContainer: {
-      textAlign: 'center' as const,
-      order: 2, // Move to bottom on mobile
-    },
-    mobileImage: {
-      maxWidth: '200px',
-      height: 'auto',
-    },
-    mobileGoalTracker: {
-      //   minHeight: '200px',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      padding: '0.5rem',
-      order: 1, // Move to top on mobile
     },
     ctaSection: {
       textAlign: 'center' as const,
+      display: 'none', // TODO unhide once we get link
     },
     donateButton: {
       height: '50px',
@@ -179,7 +121,7 @@ function useStyles() {
     },
     description: {
       //   color: colors.textSecondary,
-      fontSize: '14px',
+      fontSize: '24px',
     },
     divider: {
       borderColor: 'var(--translucent-border)',

@@ -160,9 +160,9 @@ function getChartOptions(
           value: {
             show: true,
             color: colors.text,
-            fontSize: '40px',
+            fontSize: '26px',
             fontWeight: 700,
-            offsetY: 4,
+            // offsetY: 4,
             formatter: (val: number) => `${Math.round(val)}${COPY.valueSuffix}`,
           },
           total: {
