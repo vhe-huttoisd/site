@@ -4,7 +4,10 @@ import { Button, Card, Space, Typography, Image } from 'antd';
 import { HeartOutlined } from '@ant-design/icons';
 import { useColors } from '../hooks';
 import { CandyMonsterGoalTracker } from './CandyMonsterGoalTracker';
+
 const CANDY_MONSTER_IMAGE_PATH = '/images/candy-monster.png';
+const DONATE_LINK =
+  'https://my.cheddarup.com/c/vhe-trunk-or-treat-donations/items';
 
 const { Title, Paragraph } = Typography;
 
@@ -32,21 +35,22 @@ export function CandyMonsterPage() {
           </div>
 
           {/* Donate CTA Button - Full width on mobile, half on desktop */}
-          <div>
-            <div style={styles.ctaSection}>
-              <Button
-                type="primary"
-                size="large"
-                icon={<HeartOutlined />}
-                style={styles.donateButton}
-                onClick={() => {
-                  // TODO: Implement donation functionality
-                  alert('Donate button clicked!');
-                }}
-              >
-                Donate Now
-              </Button>
-            </div>
+          <div style={styles.ctaSection}>
+            <Button
+              type="primary"
+              size="large"
+              icon={<HeartOutlined />}
+              style={styles.donateButton}
+              href={DONATE_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              // onClick={() => {
+              //   // TODO: Implement donation functionality
+              //   alert('Donate button clicked!');
+              // }}
+            >
+              Donate Now
+            </Button>
           </div>
 
           {/* Candy Monster Image */}
@@ -106,7 +110,6 @@ function useStyles() {
     },
     ctaSection: {
       textAlign: 'center' as const,
-      display: 'none', // TODO unhide once we get link
     },
     donateButton: {
       height: '50px',
