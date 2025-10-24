@@ -14,14 +14,6 @@ const EVENT_KEYS = {
  * @param buttonId - The ID of the button that was clicked
  */
 export function trackDonateButtonClick(buttonId: ButtonIds): void {
-  // TODO: Implement actual analytics tracking
-  console.log(`Donate button clicked: ${buttonId}`);
-
-  // Example analytics implementation:
-  // analytics.track('donate_button_clicked', {
-  //   button_id: buttonId,
-  //   timestamp: new Date().toISOString(),
-  // });
   track(EVENT_KEYS.DONATE_BUTTON_CLICKED, {
     button_id: buttonId,
   });
