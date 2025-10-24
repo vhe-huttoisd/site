@@ -4,6 +4,7 @@ import { Button, Card, Space, Typography, Image } from 'antd';
 import { HeartOutlined } from '@ant-design/icons';
 import { useColors } from '../hooks';
 import { CandyMonsterGoalTracker } from './CandyMonsterGoalTracker';
+import { ButtonIds, trackDonateButtonClick } from '@/analytics';
 
 const CANDY_MONSTER_IMAGE_PATH = '/images/candy-monster.png';
 const DONATE_LINK =
@@ -44,10 +45,10 @@ export function CandyMonsterPage() {
               href={DONATE_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              // onClick={() => {
-              //   // TODO: Implement donation functionality
-              //   alert('Donate button clicked!');
-              // }}
+              onClick={() => {
+                trackDonateButtonClick(ButtonIds.TRUBK_OR_TREAT);
+                console.log('Donate button clicked!');
+              }}
             >
               Donate Now
             </Button>
