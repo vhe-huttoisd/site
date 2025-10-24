@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { Analytics } from '@vercel/analytics/next';
 import { CandyMonsterPage } from '@/components/CandyMonsterPage';
 import { AppHeader } from '@/components/AppHeader';
 import {
@@ -31,8 +32,11 @@ export default function Home() {
         />
       </Head>
 
-      <AppHeader />
-      <CandyMonsterPage />
+      <body>
+        <AppHeader />
+        <CandyMonsterPage />
+        <Analytics />
+      </body>
     </div>
   );
 }
